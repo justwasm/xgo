@@ -314,7 +314,7 @@ func LoadDir(dir string, conf *Config, genTestPkg bool, promptGenGo ...bool) (ou
 }
 
 func afterLoad(mod *xgomod.Module, xgo *env.XGo, out, test *gogen.Package, conf *Config) {
-	if mod.Path() == xgoMod { // nothing to do for XGo itself
+	if out == nil || mod.Path() == xgoMod { // nothing to do for XGo itself
 		return
 	}
 	updateMod := !conf.DontUpdateGoMod && mod.HasModfile()
